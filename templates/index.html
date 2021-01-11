@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-info btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+        <!-- Mars News -->
+        <div class="row" id="mars-news">
+             <div class="col-md-12">
+                <div class="media">
+                    <div class="media-body">
+                        <h2>Latest Mars News</h2>
+                        <h4 class="media-heading">{{mars.news_title}}</h4>
+                        <p>{{ mars.news_paragraph }}</p>
+                    </div>
+                </div>           
+            </div>
+        </div>
+        <!-- Featured Image -->
+        <div class="row" id="mars-featured-image">
+            <div class="col-md-8">
+                <h2>Featured Mars Image</h2>
+                <img src="{{ mars.featured_image }}" class="img-responsive img-rounded " alt="Responsive image">         
+            </div> 
+            <!-- Mars Facts -->
+            <div class="col-md-4">
+                <div class="row" id="mars-facts">
+                    <h4>Mars Facts</h4>
+                     {{ mars.facts | safe }}    
+                </div>
+            </div>
+        </div>
+        <div class="row" id="mars-hemispheres">
+            <div class="col-md-12">
+                <div class="media-body">
+                   <h2>Mars Hemispheres</h2>
+                   {% for hemisphere in mars.hemisphere_image_urls %}
+                   <div class="col-md-3">
+                     <h4>{{ hemisphere.title | safe}}</h4>
+                     <img class="img-thumbnail img-rounded" src= "{{ hemisphere.img_url }}" alt="hemisphere image">
+                   </div>
+                   {% endfor %}
+                </div>        
+           </div>
+       </div>
+    </div>
+</body>
+</html>
